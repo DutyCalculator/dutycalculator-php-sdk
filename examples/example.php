@@ -26,7 +26,7 @@
 	 * Example of calculation
 	 */
 	$items = array();
-	$item1 = array("desc" => 'iPad 2',
+	$items[] = array("desc" => 'iPad 2',
 				   "sku" => 'internal_ipad_2_sku',
 				   "value" => 499,
 				   "weight" => 1,
@@ -34,8 +34,7 @@
 				   "qty" => 1,
 				   "origin" => 'USA',
 				   "reference" => 'ipad2_0001');
-	$items[] = $item1;
-	$item2 = array("desc" => 'iPhone 5s',
+	$items[] = array("desc" => 'iPhone 5s',
 				   "sku" => 'internal_iphone5s_sku',
 				   "value" => 799,
 				   "weight" => 1,
@@ -43,7 +42,6 @@
 				   "qty" => 1,
 				   "origin" => 'USA',
 				   "reference" => 'iphone5s_0001');
-	$items[] = $item2;
 	$countryFrom = 'US';
 	$countryTo = 'GBR';
 	$province = '';
