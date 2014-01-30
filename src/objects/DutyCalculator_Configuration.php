@@ -7,7 +7,7 @@ class DutyCalculator_Configuration
 	const RESPONSE_FORMAT_JSON = 'json';
 
 	protected $_apiKey;
-	protected $_endPoint = 'stagebeta3.dutycalculator.com/api2.1';
+	protected $_endPoint = 'www.dutycalculator.com/api2.1';
 	protected $_useSSL = false;
 
 	public function setApiKey($apiKey)
