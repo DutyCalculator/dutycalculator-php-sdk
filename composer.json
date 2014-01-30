@@ -1,0 +1,37 @@
+{
+	"name": "dutycalculator/dutycalculator-php-sdk",
+	"description": "DutyCalculator API PHP SDK",
+	"keywords": ["dutycalculator", "sdk", "api", "php"],
+	"type": "library",
+	"homepage": "https://github.com/dutycalculator/dutycalculator-php-sdk",
+	"license": "Apache2",
+	"authors": [
+		{
+			"name": "DutyCalculator API",
+			"homepage": "https://github.com/dutycalculator/dutycalculator-php-sdk/contributors"
+		}
+	],
+	"repositories": [
+		{
+			"type":"package",
+			"package": {
+				"name": "dutycalculator/dutycalculator-php-sdk",
+				"version":"master",
+				"source": {
+					"url": "https://github.com/dutycalculator/dutycalculator-php-sdk",
+					"type": "git",
+					"reference":"master"
+				}
+			}
+		}
+	],
+	"require": {
+		"php": ">=5.2.0",
+		"ext-curl": "*",
+		"ext-json": "*",
+		"dutycalculator/dutycalculator-php-sdk": "master"
+	},
+	"autoload": {
+		"files": ["src/dutycalculator.php"]
+	}
+}
