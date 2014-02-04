@@ -20,6 +20,7 @@ $client = new DutyCalculator_Client('YOUR_API_KEY');
  * Example of getting available import to countries
  */
 $countriesTo = $client->getImportToCountries();
+print_r($countriesTo->getAsArray());
 ```
 
 All [API calls](http://www.dutycalculator.com/api-center/dutycalculator-api-2-1-documentation/) have function representation in the client class.
