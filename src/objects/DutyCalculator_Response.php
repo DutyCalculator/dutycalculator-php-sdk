@@ -48,10 +48,7 @@ class DutyCalculator_Response
 		else
 		{
 			$value = trim((string)$node);
-			if ($value)
-			{
-				$nodeData['node-value'] = $value;
-			}
+			$nodeData['node-value'] = $value;
 		}
 		$result[$node->getName()] = $nodeData;
 		return $result;
