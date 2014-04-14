@@ -320,18 +320,16 @@ class DutyCalculator_Client
 	 * @param bool $commercialImporter
 	 * @param $importedWeight
 	 * @param $importedValue
+	 * @param array $additionalParams
 	 * @return DutyCalculator_Response
 	 */
-	public function calculateImportDutyAndTaxes($items, $countryFrom, $countryTo, $province = '', $shipping, $insurance, $currency, $classifyBy = self::CLASSIFY_BY_CATEGORY_AND_DESCRIPTION, $outputCurrency = false, $includeHsCodes = false, $detailedResult = true, $shipmentWeight = -1, $commercialImporter = false, $importedWeight = 0, $importedValue = -1)
+	public function calculateImportDutyAndTaxes($items, $countryFrom, $countryTo, $province = '', $shipping, $insurance, $currency, $classifyBy = self::CLASSIFY_BY_CATEGORY_AND_DESCRIPTION, $outputCurrency = false, $includeHsCodes = false, $detailedResult = true, $shipmentWeight = -1, $commercialImporter = false, $importedWeight = 0, $importedValue = -1, $additionalParams=array())
 	{
 		$params = array();
-
 		$params['from'] = $countryFrom;
 		$params['to'] = $countryTo;
 		$params['province'] = $province;
-
 		$params['classify_by'] = $classifyBy;
-
 		$params['cat'] = array();
 		$params['hs'] = array();
 		$params['country_of_hs_code'] = array();
@@ -476,6 +474,11 @@ class DutyCalculator_Client
 		$params['commercial_importer'] = $commercialImporter;
 		$params['imported_wt'] = $importedWeight;
 		$params['imported_value'] = $importedValue;
+		
+		foreach($additionalParams as $key=>$value){
+            		$params[$key]=$value;
+        	}
+		
 		$result = $this->sendRequest('calculation', $params);
 		return $result;
 	}
