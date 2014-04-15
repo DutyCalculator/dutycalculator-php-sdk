@@ -68,7 +68,7 @@ class DutyCalculator_Request
 			ob_end_clean();
 			if (!$result)
 			{
-				throw new DutyCalculator_Exception((string)curl_errno($curlHandler), (string)curl_error($curlHandler));
+				throw new DutyCalculator_Exception((string)curl_error($curlHandler),(int)curl_errno($curlHandler));
 			}
 			curl_close($curlHandler);
 		}
