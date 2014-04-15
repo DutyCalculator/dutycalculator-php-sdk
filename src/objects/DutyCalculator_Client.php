@@ -2,6 +2,7 @@
 
 class DutyCalculator_Client
 {
+    /** @var DutyCalculator_Configuration  */
 	protected $_config;
 
 	const CLASSIFY_BY_CATEGORY = 'cat';
@@ -22,12 +23,14 @@ class DutyCalculator_Client
 	const IMPORTER_TYPE_COMMERCIAL = 'commercial';
 	const IMPORTER_TYPE_PRIVATE = 'private';
 
+    /** @param $apiKey string */
 	public function __construct($apiKey)
 	{
 		$this->_config = new DutyCalculator_Configuration();
 		$this->_config->setApiKey($apiKey);
 	}
 
+    /** @return DutyCalculator_Configuration */
 	public function getConfig()
 	{
 		return $this->_config;
