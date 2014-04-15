@@ -2,25 +2,35 @@
 
 class DutyCalculator_Response
 {
+    /** @var  string */
 	protected $_responseXML;
+    /** @var DutyCalculator_Request  */
+    protected $_request;
 
-	public function __construct($responseXML)
+    /**
+     * @param $responseXML string
+     * @param DutyCalculator_Request $request
+     */
+    public function __construct($responseXML,DutyCalculator_Request $request)
 	{
 		$this->_responseXML = $responseXML;
+        $this->_request = $request;
 		$this->checkError();
 	}
 
-	/**
-	 * @return string
-	 */
+    /** @return DutyCalculator_Request */
+    public function getRequest()
+    {
+        return $this->_request;
+    }
+
+	/** @return string */
 	public function getAsXML()
 	{
 		return $this->_responseXML;
 	}
 
-	/**
-	 * @return array
-	 */
+	/** @return array */
 	public function getAsArray()
 	{
 		$root = simplexml_load_string($this->_responseXML);
@@ -28,11 +38,16 @@ class DutyCalculator_Response
 		return $result;
 	}
 
-	private function convertToArray(SimpleXMLElement $node)
+    /**
+     * @param SimpleXMLElement $node
+     * @return array
+     */
+    private function convertToArray(SimpleXMLElement $node)
 	{
 		$result = array();
 		$nodeData = array();
 
+        /** @var $attribute SimpleXMLElement */
 		foreach($node->attributes() as $attribute)
 		{
 			$nodeData[$attribute->getName()] = (string)$attribute;
@@ -54,16 +69,15 @@ class DutyCalculator_Response
 		return $result;
 	}
 
-	/**
-	 * @return string
-	 */
+	/** @return string */
 	public function getAsJSON()
 	{
 		$result = $this->getAsArray();
 		return json_encode($result);
 	}
 
-	private function checkError()
+    /** @throws DutyCalculator_Exception */
+    private function checkError()
 	{
 		if (stripos($this->_responseXML, '<?xml') === false)
 		{
