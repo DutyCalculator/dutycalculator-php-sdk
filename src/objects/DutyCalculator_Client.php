@@ -4,6 +4,8 @@ class DutyCalculator_Client
 {
     /** @var DutyCalculator_Configuration  */
 	protected $_config;
+    /** @var array */
+    protected $_requests;
 
 	const CLASSIFY_BY_CATEGORY = 'cat';
 	const CLASSIFY_BY_CATEGORY_AND_DESCRIPTION = 'cat desc';
@@ -28,6 +30,7 @@ class DutyCalculator_Client
 	{
 		$this->_config = new DutyCalculator_Configuration();
 		$this->_config->setApiKey($apiKey);
+        $this->_requests = array();
 	}
 
     /** @return DutyCalculator_Configuration */
@@ -48,6 +51,7 @@ class DutyCalculator_Client
 		$request = new DutyCalculator_Request($this->getConfig());
 		$request->setAction($action);
 		$request->setParams($params);
+        $this->_requests[] = $request;
 		$response = $request->send();
 		return $response;
 	}
@@ -798,4 +802,24 @@ class DutyCalculator_Client
 		$result = $this->sendRequest('autocomplete', $params);
 		return $result;
 	}
+
+    /**
+     * Return all client requests to DutyCalculator API
+     *
+     * @return array
+     */
+    public function getRequests()
+    {
+        return $this->_requests;
+    }
+
+    /**
+     * Return last request to DutyCalculator API
+     *
+     * @return DutyCalculator_Request | false
+     */
+    public function getLastRequest()
+    {
+        return end($this->_requests);
+    }
 }
